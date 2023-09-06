@@ -118,7 +118,7 @@ except {encryptstring('__import__("lzma").LZMAError', func= True)}:...
     def finalize(self):
         if os.path.dirname(self.outpath).strip() != "":
             os.makedirs(os.path.dirname(self.outpath), exist_ok= True)
-        with open(self.outpath, "w") as e:
+        with open(self.outpath, "w", encoding="utf8") as e:
             e.write(self.code.decode())
         print("Saved as --> " + os.path.realpath(self.outpath))
 
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     if args.path is None:
         args.path = "Obfuscated_" + os.path.basename(sourcefile)
     
-    with open(sourcefile) as sourcefile:
+    with open(sourcefile, encoding="utf8") as sourcefile:
         code = sourcefile.read()
     
     BlankOBF(code, args.path)
